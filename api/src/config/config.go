@@ -22,7 +22,7 @@ func Carregar() {
 		log.Fatal(erro)
 	}
 
-	Porta, erro = strconv.Atoi(os.Getenv("PORT")) //strconv.Atoi = Parse.int
+	Porta, erro = strconv.Atoi(os.Getenv("API_PORT")) //strconv.Atoi = Parse.int
 
 	if erro != nil {
 		Porta = 9000
