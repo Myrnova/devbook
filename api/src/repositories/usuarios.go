@@ -95,3 +95,38 @@ func (repositorio repositorioDeUsuarios) BuscarPorID(ID uint64) (models.Usuario,
 
 	return usuario, nil
 }
+
+// Atualizar altera as informações de um usuario no bando de dados
+func (repositorio repositorioDeUsuarios) AtualizarUsuario(ID uint64, usuario models.Usuario) error {
+	statement, erro := repositorio.db.Prepare(
+		"UPDATE usuarios SET nome = ?, email = ?, nick = ? WHERE id = ?")
+	if erro != nil {
+		return erro
+	}
+	defer statement.Close()
+	if _, erro = statement.Exec(
+		usuario.Nome,
+		usuario.Email,
+		usuario.Nick,
+		ID,
+	); erro != nil {
+		return erro
+	}
+	return nil
+}
+
+// Deletar exclui as informações de um usuário no banco de dados
+func (repositorio repositorioDeUsuarios) DeletarUsuario(ID uint64) error {
+
+	statement, erro := repositorio.db.Prepare("DELETE FROM usuarios WHERE id = ?")
+	if erro != nil {
+		return erro
+	}
+	defer statement.Close()
+
+	if _, erro = statement.Exec(ID); erro != nil {
+		return erro
+	}
+
+	return nil
+}
