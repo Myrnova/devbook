@@ -8,6 +8,6 @@ func Hash(senha string) ([]byte, error) {
 }
 
 // VerficiarSenha compara uma senha e um hash e retorna se elas são iguais
-func VerificarSenha(senhaComHash []byte, senha string) error {
-	return bcrypt.CompareHashAndPassword(senhaComHash, []byte(senha))
+func VerificarSenha(senhaComHash, senha string) error {
+	return bcrypt.CompareHashAndPassword([]byte(senhaComHash), []byte(senha))
 }
