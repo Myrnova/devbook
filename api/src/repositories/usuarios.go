@@ -3,6 +3,7 @@ package repositories
 import (
 	"api/src/models"
 	"database/sql"
+	"errors"
 	"fmt"
 )
 
@@ -131,6 +132,7 @@ func (repositorio repositorioDeUsuarios) DeletarUsuario(ID uint64) error {
 	return nil
 }
 
+//BuscarPorEmail traz o id e senha do usuário com aquele email
 func (repositorio repositorioDeUsuarios) BuscarPorEmail(email string) (models.Usuario, error) {
 	linha, erro := repositorio.db.Query(
 		"select id, senha from usuarios where email = ?", email,
@@ -148,7 +150,138 @@ func (repositorio repositorioDeUsuarios) BuscarPorEmail(email string) (models.Us
 		if erro := linha.Scan(&usuario.ID, &usuario.Senha); erro != nil {
 			return models.Usuario{}, erro
 		}
+	} else {
+		return models.Usuario{}, errors.New("nenhum usuário encontrado")
+	}
+	return usuario, nil
+}
+
+//BuscarSenha traz a senha de um usuário pelo ID
+func (repositorio repositorioDeUsuarios) BuscarSenha(usuarioID uint64) (string, error) {
+	linha, erro := repositorio.db.Query("select senha from usuarios where id = ?", usuarioID)
+	if erro != nil {
+		return "", erro
 	}
 
-	return usuario, nil
+	defer linha.Close()
+
+	var usuario models.Usuario
+	if linha.Next() {
+		if erro = linha.Scan(&usuario.Senha); erro != nil {
+			return "", erro
+		}
+	}
+	return usuario.Senha, nil
+}
+
+//AtualizarSenha atualiza a senha do usuário
+func (repositorio repositorioDeUsuarios) AtualizarSenha(usuarioID uint64, senha string) error {
+	statement, erro := repositorio.db.Prepare("update usuarios set senha = ? where id = ?")
+	if erro != nil {
+		return erro
+	}
+
+	defer statement.Close()
+
+	if _, erro = statement.Exec(senha, usuarioID); erro != nil {
+		return erro
+	}
+	return nil
+}
+
+func (repositorio repositorioDeUsuarios) SeguirUsuario(usuarioID, seguidorID uint64) error {
+	statement, erro := repositorio.db.Prepare(
+		"insert ignore into seguidores (usuario_id, seguidor_id) values (?, ?)",
+	) //ignore não permite que insira duas colunas iguais novamente
+	if erro != nil {
+		return erro
+	}
+
+	defer statement.Close()
+	if _, erro = statement.Exec(usuarioID, seguidorID); erro != nil {
+		return erro
+	}
+
+	return nil
+}
+
+//PararDeSeguirUsuario permite que um usuário para de seguir o outro
+func (repositorio repositorioDeUsuarios) PararDeSeguirUsuario(usuarioID, seguidorID uint64) error {
+	statement, erro := repositorio.db.Prepare(
+		"delete from seguidores where usuario_id = ? AND seguidor_id = ?",
+	) //ignore não permite que insira duas colunas iguais novamente
+	if erro != nil {
+		return erro
+	}
+
+	defer statement.Close()
+	if _, erro = statement.Exec(usuarioID, seguidorID); erro != nil {
+		return erro
+	}
+
+	return nil
+}
+
+//BuscarSeguidores traz todos os usuários que seguem determinado usuário
+func (repositorio repositorioDeUsuarios) BuscarSeguidores(usuarioID uint64) ([]models.Usuario, error) {
+	linhas, erro := repositorio.db.Query(`
+		select u.id, u.nome, u.nick, u.email, u.criado_em
+		from usuarios u
+			inner join seguidores s on u.id = s.seguidor_id 
+			where s.usuario_id = ? 
+	`, usuarioID)
+
+	if erro != nil {
+		return nil, erro
+	}
+
+	defer linhas.Close()
+
+	var usuarios []models.Usuario
+
+	for linhas.Next() {
+		var usuario models.Usuario
+		if erro = linhas.Scan(
+			&usuario.ID,
+			&usuario.Nome,
+			&usuario.Nick,
+			&usuario.Email,
+			&usuario.CriadoEm); erro != nil {
+			return nil, erro
+		}
+		usuarios = append(usuarios, usuario)
+	}
+	return usuarios, nil
+}
+
+//BuscarSeguindo traz todos os usuários que determinado usuário segue
+func (repositorio repositorioDeUsuarios) BuscarSeguindo(usuarioID uint64) ([]models.Usuario, error) {
+	linhas, erro := repositorio.db.Query(`
+		select u.id, u.nome, u.nick, u.email, u.criado_em
+		from usuarios u
+			inner join seguidores s on u.id = s.usuario_id 
+			where s.seguidor_id = ? 
+	`, usuarioID)
+
+	if erro != nil {
+		return nil, erro
+	}
+
+	defer linhas.Close()
+
+	var usuarios []models.Usuario
+
+	for linhas.Next() {
+		var usuario models.Usuario
+		if erro = linhas.Scan(
+			&usuario.ID,
+			&usuario.Nome,
+			&usuario.Nick,
+			&usuario.Email,
+			&usuario.CriadoEm); erro != nil {
+			return nil, erro
+		}
+		usuarios = append(usuarios, usuario)
+	}
+	return usuarios, nil
 }
