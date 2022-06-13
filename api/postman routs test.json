@@ -1,0 +1,616 @@
+{
+	"info": {
+		"_postman_id": "81a98300-b29f-4918-a11a-8698a2a13da8",
+		"name": "Estudos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21284645"
+	},
+	"item": [
+		{
+			"name": "Go",
+			"item": [
+				{
+					"name": "Publicacoes",
+					"item": [
+						{
+							"name": "localhost:5000/publicacoes",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NTUxNTUzMTksInVzdWFyaW9JZCI6MX0.4yJX9QEvhItNGGrw971_gDsczUBgvp2re54oTeUSHZo",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"titulo\": \"Minha primeira publicação\",\n    \"conteudo\" : \"Olá Mundo! Minha primeira publicação!\"\n}"
+								},
+								"url": {
+									"raw": "localhost:5000/publicacoes",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"publicacoes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "localhost:5000/publicacoes/1/curtir",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NTUxNTUzMTksInVzdWFyaW9JZCI6MX0.4yJX9QEvhItNGGrw971_gDsczUBgvp2re54oTeUSHZo",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"titulo\": \"Minha primeira publicação\",\n    \"conteudo\" : \"Olá Mundo! Minha primeira publicação!\"\n}"
+								},
+								"url": {
+									"raw": "localhost:5000/publicacoes/1/curtir",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"publicacoes",
+										"1",
+										"curtir"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "localhost:5000/publicacoes/1/descurtir",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NTUxNTUzMTksInVzdWFyaW9JZCI6MX0.4yJX9QEvhItNGGrw971_gDsczUBgvp2re54oTeUSHZo",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"titulo\": \"Minha primeira publicação\",\n    \"conteudo\" : \"Olá Mundo! Minha primeira publicação!\"\n}"
+								},
+								"url": {
+									"raw": "localhost:5000/publicacoes/1/descurtir",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"publicacoes",
+										"1",
+										"descurtir"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "localhost:5000/publicacoes/1",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NTUxNTUzMTksInVzdWFyaW9JZCI6MX0.4yJX9QEvhItNGGrw971_gDsczUBgvp2re54oTeUSHZo",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"titulo\": \"Minha primeira publicação\",\n    \"conteudo\" : \"Olá Mundo! Minha primeira publicação!\"\n}"
+								},
+								"url": {
+									"raw": "localhost:5000/publicacoes/1",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"publicacoes",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "localhost:5000/usuarios/1/publicacoes",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NTUxNTUzMTksInVzdWFyaW9JZCI6MX0.4yJX9QEvhItNGGrw971_gDsczUBgvp2re54oTeUSHZo",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"titulo\": \"Minha primeira publicação\",\n    \"conteudo\" : \"Olá Mundo! Minha primeira publicação!\"\n}"
+								},
+								"url": {
+									"raw": "localhost:5000/usuarios/1/publicacoes",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"usuarios",
+										"1",
+										"publicacoes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "localhost:5000/publicacoes",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NTUxNTUzMTksInVzdWFyaW9JZCI6MX0.4yJX9QEvhItNGGrw971_gDsczUBgvp2re54oTeUSHZo",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"titulo\": \"Minha primeira publicação\",\n    \"conteudo\" : \"Olá Mundo! Minha primeira publicação!\"\n}"
+								},
+								"url": {
+									"raw": "localhost:5000/publicacoes",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"publicacoes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "localhost:5000/publicacoes",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NTUxNTUzMTksInVzdWFyaW9JZCI6MX0.4yJX9QEvhItNGGrw971_gDsczUBgvp2re54oTeUSHZo",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"titulo\": \"Minha primeira publicação\",\n    \"conteudo\" : \"Olá Mundo! Minha primeira publicação!\"\n}"
+								},
+								"url": {
+									"raw": "localhost:5000/publicacoes/1",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"publicacoes",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "localhost:5000/publicacoes/5",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NTUxNTUzMTksInVzdWFyaW9JZCI6MX0.4yJX9QEvhItNGGrw971_gDsczUBgvp2re54oTeUSHZo",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"titulo\": \"Minha primeira publicação\",\n    \"conteudo\" : \"Olá Mundo! Minha primeira publicação!\"\n}"
+								},
+								"url": {
+									"raw": "localhost:5000/publicacoes/5",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"publicacoes",
+										"5"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Usuário",
+					"item": [
+						{
+							"name": "localhost:5000/usuarios/1",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nome\": \"Leonardo\",\n    \"email\": \"leonardo.joao@gmail.com\"\n}"
+								},
+								"url": {
+									"raw": "localhost:5000/usuarios/1",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"usuarios",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "localhost:5000/usuarios/1",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nome\": \"Leonardo\",\n    \"email\": \"leonardo.joao@gmail.com\"\n}"
+								},
+								"url": {
+									"raw": "localhost:5000/usuarios/1",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"usuarios",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "localhost:5000/usuarios",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nome\": \"Leonardo\",\n    \"email\": \"leonardo.joao@gmail.com\"\n}"
+								},
+								"url": {
+									"raw": "localhost:5000/usuarios",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"usuarios"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "localhost:5000/usuarios Copy",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nome\": \"Leonardo\",\n    \"email\": \"leonardo.joao@gmail.com\"\n}"
+								},
+								"url": {
+									"raw": "localhost:5000/usuarios",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"usuarios"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "localhost:5000/usuarios/1",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nome\": \"Leonardo\",\n    \"email\": \"leonardo.joao@gmail.com\"\n}"
+								},
+								"url": {
+									"raw": "localhost:5000/usuarios/1",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"usuarios",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "localhost:5000/usuarios",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nome\": \"Leonardo\",\n    \"email\": \"leonardo.joao@gmail.com\"\n}"
+								},
+								"url": {
+									"raw": "localhost:5000/usuarios",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"usuarios"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "localhost:5000/usuarios Copy",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nome\": \"Leonardo\",\n    \"email\": \"leonardo.joao@gmail.com\"\n}"
+								},
+								"url": {
+									"raw": "localhost:5000/usuarios",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"usuarios"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "localhost:5000/login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"usuario1@gmail.com\"\n    \"senha\": \"123467\"\n}"
+								},
+								"url": {
+									"raw": "localhost:5000/login",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "localhost:5000/usuarios/2/seguir",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "localhost:5000/usuarios/2/parar-de-seguir",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NTQ5MTA0OTQsInVzdWFyaW9JZCI6MX0.Pdtqx4iol3lbko-g5pnymKi2wRzqFioj3BvWkkA3kk4",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:5000/usuarios/1/parar-de-seguir",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"usuarios",
+										"1",
+										"parar-de-seguir"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "localhost:5000/usuarios/1/atualizar-senha",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NTQ5MTA0OTQsInVzdWFyaW9JZCI6MX0.Pdtqx4iol3lbko-g5pnymKi2wRzqFioj3BvWkkA3kk4",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nova\": \"12345678\",\n    \"atual\": \"1234567\"\n}"
+								},
+								"url": {
+									"raw": "localhost:5000/usuarios/1/atualizar-senha",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"usuarios",
+										"1",
+										"atualizar-senha"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "localhost:5000/usuarios/1/seguidores",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NTQ5MTA0OTQsInVzdWFyaW9JZCI6MX0.Pdtqx4iol3lbko-g5pnymKi2wRzqFioj3BvWkkA3kk4",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:5000/usuarios/3/seguidores",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"usuarios",
+										"3",
+										"seguidores"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "localhost:5000/usuarios/3/seguindo",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NTQ5MTA0OTQsInVzdWFyaW9JZCI6MX0.Pdtqx4iol3lbko-g5pnymKi2wRzqFioj3BvWkkA3kk4",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:5000/usuarios/2/seguindo",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"usuarios",
+										"2",
+										"seguindo"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
