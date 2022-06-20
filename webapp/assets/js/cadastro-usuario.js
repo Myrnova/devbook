@@ -7,7 +7,7 @@ function criarUsuario(event) {
     var nome = $("#nome").val();
     var email = $("#email").val();
     var nick = $("#nick").val();
-    var password = $("#password").val();
+    var senha = $("#password").val();
     var confirmarPassword = $("#confirmar-password").val();
 
     if(password != confirmarPassword) {
@@ -22,7 +22,13 @@ function criarUsuario(event) {
             nome,
             email,
             nick,
-            password
+            senha
         }
+    }).done(function() {
+        alert("Usuário cadastrado com sucesso!");
+        window.location.href = "/login";    
+    }).fail(function(erro) {
+        console.log(erro)
+        alert("Erro ao cadastrar usuário!");
     })
 }
