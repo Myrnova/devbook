@@ -4,6 +4,7 @@ import (
 	"api/src/models"
 	"database/sql"
 	"errors"
+	"fmt"
 )
 
 //RepositorioPublicacoes representa um repositorio de publicacoes
@@ -91,25 +92,23 @@ func (repositorioPublicacoes RepositorioPublicacoes) BuscarPublicacoes(usuarioID
 	defer linhas.Close()
 
 	var publicacoes []models.Publicacao
-	if linhas.Next() {
-		for linhas.Next() {
-			var publicacao models.Publicacao
-			if erro := linhas.Scan(
-				&publicacao.ID,
-				&publicacao.Titulo,
-				&publicacao.Conteudo,
-				&publicacao.AutorID,
-				&publicacao.Curtidas,
-				&publicacao.CriadoEm,
-				&publicacao.AutorNick,
-			); erro != nil {
-				return nil, erro
-			}
-			publicacoes = append(publicacoes, publicacao)
+	for linhas.Next() {
+		var publicacao models.Publicacao
+		if erro := linhas.Scan(
+			&publicacao.ID,
+			&publicacao.Titulo,
+			&publicacao.Conteudo,
+			&publicacao.AutorID,
+			&publicacao.Curtidas,
+			&publicacao.CriadoEm,
+			&publicacao.AutorNick,
+		); erro != nil {
+			return nil, erro
 		}
-	} else {
-		return nil, errors.New("nenhuma publicação encontrada")
+		publicacoes = append(publicacoes, publicacao)
 	}
+
+	fmt.Println(publicacoes)
 	return publicacoes, nil
 }
 
@@ -163,24 +162,24 @@ func (repositorioPublicacoes RepositorioPublicacoes) BuscarPublicacoesPorUsuario
 	defer linhas.Close()
 
 	var publicacoes []models.Publicacao
-	if linhas.Next() {
-		for linhas.Next() {
-			var publicacao models.Publicacao
-			if erro := linhas.Scan(
-				&publicacao.ID,
-				&publicacao.Titulo,
-				&publicacao.Conteudo,
-				&publicacao.AutorID,
-				&publicacao.Curtidas,
-				&publicacao.CriadoEm,
-				&publicacao.AutorNick,
-			); erro != nil {
-				return nil, erro
-			}
-			publicacoes = append(publicacoes, publicacao)
+	for linhas.Next() {
+		var publicacao models.Publicacao
+		if erro := linhas.Scan(
+			&publicacao.ID,
+			&publicacao.Titulo,
+			&publicacao.Conteudo,
+			&publicacao.AutorID,
+			&publicacao.Curtidas,
+			&publicacao.CriadoEm,
+			&publicacao.AutorNick,
+		); erro != nil {
+			return nil, erro
 		}
-	} else {
-		return nil, errors.New("nenhuma publicação encontrada para o usuario")
+		publicacoes = append(publicacoes, publicacao)
+	}
+
+	if err := linhas.Err(); err != nil {
+		return nil, erro
 	}
 	return publicacoes, nil
 }

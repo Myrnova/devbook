@@ -1,9 +1,11 @@
 package controllers
 
 import (
+	"encoding/json"
 	"fmt"
 	"net/http"
 	"webapp/src/config"
+	"webapp/src/models"
 	"webapp/src/requisicoes"
 	"webapp/src/respostas"
 	"webapp/src/utils"
@@ -23,8 +25,22 @@ func CarregarTelaDeCadastroDeUsuario(w http.ResponseWriter, r *http.Request) {
 func CarregarTelaPrincipal(w http.ResponseWriter, r *http.Request) {
 	url := fmt.Sprintf("%s//publicacoes", config.APIUrl)
 	response, erro := requisicoes.FazerRequisicaoComAutenticacao(r, http.MethodGet, url, nil)
-	fmt.Println(response.StatusCode, erro)
+	if erro != nil {
+		respostas.JSON(w, http.StatusInternalServerError, respostas.ErroAPI{Erro: erro.Error()})
+		return
+	}
+	defer response.Body.Close()
 
-	respostas.TratarStatusCodeDeErro(w, response)
-	utils.ExecutarTemplate(w, "home.html", nil)
+	if response.StatusCode >= 400 {
+		respostas.TratarStatusCodeDeErro(w, response)
+		return
+	}
+
+	var publicacoes []models.Publicacao
+
+	if erro = json.NewDecoder(response.Body).Decode(&publicacoes); erro != nil {
+		respostas.JSON(w, http.StatusUnprocessableEntity, respostas.ErroAPI{Erro: erro.Error()})
+		return
+	}
+	utils.ExecutarTemplate(w, "home.html", publicacoes)
 }
