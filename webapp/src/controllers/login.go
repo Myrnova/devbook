@@ -55,3 +55,7 @@ func FazerLogin(w http.ResponseWriter, r *http.Request) {
 	respostas.JSON(w, http.StatusOK, nil)
 
 }
+
+func FazerLogoff(w http.ResponseWriter, r *http.Request) {
+
+}

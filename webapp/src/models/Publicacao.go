@@ -9,5 +9,5 @@ type Publicacao struct {
 	AutorID   uint64    `json:"autor_id,omitempty"`
 	AutorNick string    `json:"autor_nick,omitempty"`
 	Curtidas  uint64    `json:"curtidas"`
-	CriadaEm  time.Time `json:"criadaEm,omitempty"`
+	CriadoEm  time.Time `json:"criado_em,omitempty"`
 }

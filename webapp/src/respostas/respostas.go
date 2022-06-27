@@ -16,10 +16,12 @@ func JSON(w http.ResponseWriter, statusCode int, dados interface{}) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(statusCode)
 
-	if erro := json.NewEncoder(w).Encode(dados); erro != nil {
-		log.Fatal(erro)
+	// if dados != nil não pode ser utilizado porque pro ajax caso não retorne dados e o status não seja StatusNoContent, ele ve como um erro
+	if statusCode != http.StatusNoContent {
+		if erro := json.NewEncoder(w).Encode(dados); erro != nil {
+			log.Fatal(erro)
+		}
 	}
-
 }
 
 //TratarStatusCodeErro trata as requisiçoes com status code 400 ou superior

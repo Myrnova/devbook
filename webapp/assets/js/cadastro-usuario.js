@@ -10,8 +10,8 @@ function criarUsuario(event) {
     var senha = $("#password").val();
     var confirmarPassword = $("#confirmar-password").val();
 
-    if(password != confirmarPassword) {
-        alert("As senhas não coincidem!");
+    if(senha != confirmarPassword) {
+        Swal.fire("Ops...", "As senhas não coincidem!", "error");
         return
     }
 
@@ -25,10 +25,25 @@ function criarUsuario(event) {
             senha
         }
     }).done(function() {
-        alert("Usuário cadastrado com sucesso!");
-        window.location.href = "/login";    
+        Swal.fire("Sucesso!", 
+        "Usuário cadastrado com sucesso!", 
+        "success").then(function() {
+            $.ajax({
+                url: "/login",
+                method: "POST",
+                data: {
+                    email,
+                    senha
+                }
+            }).done(function () {
+                window.location.href = "/home";   
+            }).fail(function(erro) {
+                console.error(erro);
+                Swal.fire("Ops...", "Erro ao autenticar o usuário!", "error");
+            })
+        }) 
     }).fail(function(erro) {
-        console.log(erro)
-        alert("Erro ao cadastrar usuário!");
+        console.log(erro);
+        Swal.fire("Ops...", "Erro ao cadastrar usuário!", "error");
     })
 }

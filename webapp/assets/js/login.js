@@ -16,10 +16,14 @@ function fazerLogin(event) {
             senha
         }
     }).done(function() {
-        alert("Login realizado com sucesso!");
-        window.location.href = "/home";    
+        Swal.fire(
+        "Sucesso",
+        "Login realizado com sucesso!", 
+        "success").then(function() {
+            window.location.href = "/home";    
+        });
     }).fail(function(erro) {
         console.log(erro)
-        alert("Usuário ou senha incorretos!");
+        Swal.fire("Ops...","Usuário ou senha incorretos!", "error");
     })
 }

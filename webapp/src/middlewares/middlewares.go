@@ -20,10 +20,9 @@ func Autenticar(next http.HandlerFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 
 		if _, erro := cookies.Ler(r); erro != nil {
-			http.Redirect(w, r, "/login", 302)
+			http.Redirect(w, r, "/login", http.StatusFound)
 			return
 		}
 		next(w, r)
 	}
-
 }
