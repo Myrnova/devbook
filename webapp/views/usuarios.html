@@ -20,7 +20,7 @@
             {{ range .}}
               <p class="card-text">
                 {{ .Nome }} - 
-                <a href="/usuarios/ {{ .ID }}">{{ .Nick }}</a>
+                <a href="/usuarios/{{ .ID }}">{{ .Nick }}</a>
                 - Membro desde {{ .CriadoEm.Format "02/01/2006"}}
               </p>
             {{ else }}

@@ -3,8 +3,6 @@ package repositories
 import (
 	"api/src/models"
 	"database/sql"
-	"errors"
-	"fmt"
 )
 
 //RepositorioPublicacoes representa um repositorio de publicacoes
@@ -67,8 +65,6 @@ func (repositorioPublicacoes RepositorioPublicacoes) BuscarPorID(publicacaoID ui
 		); erro != nil {
 			return models.Publicacao{}, erro
 		}
-	} else {
-		return models.Publicacao{}, errors.New("nenhuma publicação encontrada")
 	}
 
 	return publicacao, nil
@@ -108,7 +104,6 @@ func (repositorioPublicacoes RepositorioPublicacoes) BuscarPublicacoes(usuarioID
 		publicacoes = append(publicacoes, publicacao)
 	}
 
-	fmt.Println(publicacoes)
 	return publicacoes, nil
 }
 
@@ -178,9 +173,6 @@ func (repositorioPublicacoes RepositorioPublicacoes) BuscarPublicacoesPorUsuario
 		publicacoes = append(publicacoes, publicacao)
 	}
 
-	if err := linhas.Err(); err != nil {
-		return nil, erro
-	}
 	return publicacoes, nil
 }
 

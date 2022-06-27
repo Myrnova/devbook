@@ -65,10 +65,6 @@ func (repositorio repositorioDeUsuarios) BuscarUsuarios(nomeOuNick string) ([]mo
 		}
 		usuarios = append(usuarios, usuario)
 	}
-
-	if err := linhas.Err(); err != nil {
-		return nil, erro
-	}
 	return usuarios, nil
 }
 
